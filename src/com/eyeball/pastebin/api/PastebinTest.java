@@ -3,9 +3,18 @@ package com.eyeball.pastebin.api;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.awt.Toolkit;
+import java.awt.datatransfer.Clipboard;
+import java.awt.datatransfer.ClipboardOwner;
+import java.awt.datatransfer.DataFlavor;
+import java.awt.datatransfer.Transferable;
+import java.awt.datatransfer.UnsupportedFlavorException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -65,7 +74,19 @@ public class PastebinTest {
 					JFrame link = new JFrame("Success!");
 					link.setLayout(new GridLayout(1, 2));
 					link.add(new JLabel("Your link is: "));
-					JTextField li = new JTextField(poster.getResultURL());
+					final JTextField li = new JTextField(poster.getResultURL());
+					li.addFocusListener(new FocusListener() {
+						
+						@Override
+						public void focusLost(FocusEvent e) {
+						}
+						
+						@Override
+						public void focusGained(FocusEvent e) {
+							li.setSelectionStart(0);
+							li.setSelectionEnd(li.getText().length());
+						}
+					});
 					li.setEditable(false);
 					link.add(li);
 					link.setLocationRelativeTo(null);
