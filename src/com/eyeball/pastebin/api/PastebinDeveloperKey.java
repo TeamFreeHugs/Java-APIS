@@ -3,7 +3,7 @@ package com.eyeball.pastebin.api;
 public class PastebinDeveloperKey {
 
 	private final String key;
-
+	
 	/**
 	 * 
 	 * Makes a new <code>PastebinDeveloperKey</code> object.

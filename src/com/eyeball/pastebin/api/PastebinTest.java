@@ -111,24 +111,32 @@ public class PastebinTest {
 		});
 
 		panel = new JPanel(new GridLayout(8, 2));
-		panel.add(new JLabel("Title: "));
+		JLabel titleLabel = new JLabel("Title: ");
+		titleLabel.setToolTipText("The Paste's Title");
+		panel.add(titleLabel);
 		panel.add(title);
-		panel.add(new JLabel("Dev Key: "));
+		JLabel devLabel = new JLabel("Dev Key: ");
+		devLabel.setToolTipText("Your developer key");
+		panel.add(devLabel);
 		panel.add(devKey);
 
 		JLabel unlable = new JLabel("Username*: ");
-		unlable.setToolTipText("Optional");
+		unlable.setToolTipText("Username. May be blank");
 		panel.add(unlable);
 		panel.add(username);
 		JLabel pazzwordLabel = new JLabel("Password*: ");
-		pazzwordLabel.setToolTipText("Optional");
+		pazzwordLabel.setToolTipText("Password. May be blank");
 		panel.add(pazzwordLabel);
 		panel.add(pass);
-		panel.add(new JLabel("Language: "));
+		JLabel langLabel= new JLabel("Language*: ");
+		langLabel.setToolTipText("The programming language for this paste. May be blank");
+		panel.add(langLabel);
 		panel.add(lang);
 		contents.setPreferredSize(new Dimension(700, 300));
 		frame.add(panel, BorderLayout.NORTH);
+		contents.setToolTipText("The Contents of the paste");
 		frame.add(contents, BorderLayout.CENTER);
+		paste.setToolTipText("Paste the post on pastebin.com");
 		frame.add(paste, BorderLayout.SOUTH);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.pack();
