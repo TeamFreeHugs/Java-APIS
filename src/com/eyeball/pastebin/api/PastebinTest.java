@@ -17,24 +17,38 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.UIManager;
 
 import com.eyeball.pastebin.api.PastebinPaste.PastebinPasteExpiryTypes;
 
 public class PastebinTest {
-	static JFrame frame = new JFrame("Pastebin API GUI by Eyeballcode");
+	static JFrame frame;
 	static PastebinDeveloperKey key;
 	static JPanel panel;
-	static JTextField title = new JTextField();
-	static JTextField devKey = new JTextField();
+	static JTextField title;
+	static JTextField devKey;
 
-	static JTextField username = new JTextField();
-	static JPasswordField pass = new JPasswordField();
-	static JTextField lang = new JTextField();
-	static JTextArea contents = new JTextArea();
-	static JButton paste = new JButton("Paste!");
+	static JTextField username;
+	static JPasswordField pass;
+	static JTextField lang;
+	static JTextArea contents;
+	static JButton paste;
 
 	public static void main(String[] args) throws IOException,
 			PastebinBadAPIRequestException {
+		try {
+			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+		} catch (Exception exception) {
+			System.out.println("ERROR Could not set LAF to System Defaults");
+		}
+		frame = new JFrame("Pastebin API GUI by Eyeballcode");
+		title = new JTextField();
+		devKey = new JTextField();
+		username = new JTextField();
+		pass = new JPasswordField();
+		lang = new JTextField();
+		contents = new JTextArea();
+		paste = new JButton("Paste!");
 		System.out.println("Hello World!");
 		paste.addActionListener(new ActionListener() {
 
@@ -44,7 +58,7 @@ public class PastebinTest {
 					JOptionPane.showMessageDialog(null,
 							"Dev key or Paste Contents cannot be empty!");
 					return;
-					}
+				}
 				PastebinDeveloperKey key = new PastebinDeveloperKey(devKey
 						.getText());
 				PastebinPasteContent content = new PastebinPasteContent();
@@ -71,11 +85,11 @@ public class PastebinTest {
 					link.add(new JLabel("Your link is: "));
 					final JTextField li = new JTextField(poster.getResultURL());
 					li.addFocusListener(new FocusListener() {
-						
+
 						@Override
 						public void focusLost(FocusEvent e) {
 						}
-						
+
 						@Override
 						public void focusGained(FocusEvent e) {
 							li.setSelectionStart(0);
@@ -95,15 +109,20 @@ public class PastebinTest {
 				}
 			}
 		});
+
 		panel = new JPanel(new GridLayout(8, 2));
 		panel.add(new JLabel("Title: "));
 		panel.add(title);
 		panel.add(new JLabel("Dev Key: "));
 		panel.add(devKey);
 
-		panel.add(new JLabel("Username: "));
+		JLabel unlable = new JLabel("Username*: ");
+		unlable.setToolTipText("Optional");
+		panel.add(unlable);
 		panel.add(username);
-		panel.add(new JLabel("Password: "));
+		JLabel pazzwordLabel = new JLabel("Password*: ");
+		pazzwordLabel.setToolTipText("Optional");
+		panel.add(pazzwordLabel);
 		panel.add(pass);
 		panel.add(new JLabel("Language: "));
 		panel.add(lang);
