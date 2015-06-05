@@ -3,18 +3,11 @@ package com.eyeball.pastebin.api;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.GridLayout;
-import java.awt.Toolkit;
-import java.awt.datatransfer.Clipboard;
-import java.awt.datatransfer.ClipboardOwner;
-import java.awt.datatransfer.DataFlavor;
-import java.awt.datatransfer.Transferable;
-import java.awt.datatransfer.UnsupportedFlavorException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.io.IOException;
-import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -47,9 +40,11 @@ public class PastebinTest {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if (devKey.getText().isEmpty() | contents.getText().isEmpty())
+				if (devKey.getText().isEmpty() | contents.getText().isEmpty()) {
 					JOptionPane.showMessageDialog(null,
-							"Dev key or Contents cannot be empty!");
+							"Dev key or Paste Contents cannot be empty!");
+					return;
+					}
 				PastebinDeveloperKey key = new PastebinDeveloperKey(devKey
 						.getText());
 				PastebinPasteContent content = new PastebinPasteContent();
