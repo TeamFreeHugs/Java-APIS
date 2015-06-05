@@ -96,8 +96,8 @@ public class PastebinTest {
 		frame.add(contents, BorderLayout.CENTER);
 		frame.add(paste, BorderLayout.SOUTH);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setLocationRelativeTo(null);
 		frame.pack();
+		frame.setLocationRelativeTo(null);
 
 		frame.setVisible(true);
 	}
