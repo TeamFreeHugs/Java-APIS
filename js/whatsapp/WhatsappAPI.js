@@ -30,9 +30,13 @@ function init() {
             }
         }, sendMessage: function (text, force) {
             this.reload();
-            if (text === undefined || text === null || text.trim() === "") {
+
+            if (text === undefined || text === null) {
                 throw new ChatError("Empty message to send!");
             }
+            if (typeof text === "string")
+                if (text === "")
+                    throw new ChatError("Empty message to send!");
             if (this.attachElements.messageContentBox.text().trim() !== "" && !force) {
                 throw new ChatError("Input box isn't empty!");
             }

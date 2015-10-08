@@ -86,3 +86,8 @@ div.messageWrap.message-in {
     height: 19px;
     margin: 1px;
 }
+
+.consoleMessage {
+    word-break: keep-all;
+    white-space: nowrap;
+}

@@ -1,7 +1,4 @@
 $(document).ready(function () {
-
-    window.whatsapp = init();
-
     var playgroundInput = $('#playground').find('.input');
 
     var messageList = $('.message-list');
@@ -15,7 +12,6 @@ $(document).ready(function () {
         var messageText = $('<div>').attr('class', 'message-text');
         var selectableText = $('<span>').attr('class', 'selectable-text').text(playgroundInput.text());
         main.append(innerMessage.append(bubbleText.append(messageText.append(selectableText))));
-
 
         main.click(function () {
                 $('body').append($('<div>').css({
@@ -99,11 +95,11 @@ $(document).ready(function () {
 
     whatsapp.attachHandler({
         newMessage: function (text) {
-            console.append('<p style="color: #00FF7F;">New message! Text: ' +
+            console.append('<p style="color: #00FF7F;" class="consoleMessage">New message! Text: ' +
                 text + '</p>');
             console.scrollTop(console.prop('scrollHeight'));
         }, deletedMessage: function (oldText) {
-            console.append('<p style="color: #E60026;">Message deleted! Old text: '
+            console.append('<p style="color: #E60026;" class="consoleMessage">Message deleted! Old text: '
                 + oldText + '</p>');
             console.scrollTop(console.prop('scrollHeight'));
         }
@@ -141,7 +137,7 @@ $(document).ready(function () {
                     main.append(innerMessage.append(bubbleText.append(messageText.append(selectableText[0])[0])[0])[0]);
                     messageList.append(main);
                 } catch (e) {
-                    console.append('<p style="color: #E60026;">Error while sending message!' +
+                    console.append('<p style="color: #E60026;" class="consoleMessage">Error while sending message!' +
                         '</p>');
                 }
             }
